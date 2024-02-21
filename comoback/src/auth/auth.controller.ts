@@ -4,7 +4,15 @@ import { AuthService } from './auth.service';
 export class AuthController {
   constructor(private authService: AuthService) {}
   @Post()
-  hashingPassword(@Body() data: { password: string }): any {
-    return this.authService.salt(data.password);
+  signUp(@Body() data: { id: string; name: string; password: string }): any {
+    return this.authService.saveUserInformation(
+      data.id,
+      data.name,
+      data.password,
+    );
+  }
+  @Post()
+  validCheck(@Body() data: { id: string }): any {
+    return this.authService.idValidCheck(data.id);
   }
 }

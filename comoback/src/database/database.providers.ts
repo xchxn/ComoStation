@@ -10,7 +10,7 @@ export const databaseProviders = [
         port: 3306,
         username: 'root',
         password: 'password',
-        database: 'test',
+        database: 'comostationdb',
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         synchronize: true,
         logging: true,
