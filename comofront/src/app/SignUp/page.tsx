@@ -1,16 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-async function getData() {
-  const res = await fetch('https://api.example.com/...')
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
-  }
- 
-  return res.json()
-}
 async function Authentication( formData: FormData ) {
   'use server'
   const rawFormData = {
@@ -26,11 +15,9 @@ async function Authentication( formData: FormData ) {
     body: JSON.stringify(formData)
   };
   const res = await fetch(`https://localhost:3001/signUp`, requestOptions)
-  if(rawFormData.inputPassword) return res.json()
-  else
-    console.log("Wrong Password");
 }
-export default async function Page(){
+
+export default function Page(){
   return (
     <ul className="flex justify-center">
       <li className="grid box-content h-128 w-80 bg-slate-50 mx-2 rounded-lg my-4 justify-items-center overflow-hidden place-items-start p-6 py-8 sm:p-8 lg:p-12">
@@ -42,8 +29,18 @@ export default async function Page(){
                 type="id"
                 id="id"
                 name="id"
-                placeholder="아이디"
-                title="아이디"
+                placeholder="사용할 아이디"
+                title="사용할 아이디"
+                />
+        </div>
+        <div>
+            <input
+                className="mx-2 my-1 px-2 py-1 border-2 border-solid rounded-lg text-black"
+                type="name"
+                id="nickname"
+                name="nickname"
+                placeholder="사용할 닉네임"
+                title="사용할 닉네임"
                 />
         </div>
         <div>
@@ -57,8 +54,19 @@ export default async function Page(){
                 />
         </div>
         <div>
-            <button className="mx-2 my-1 border-2 border-solid rounded-md bg-blue-700 px-4 py-1"> Log in</button>
-            <button className="mx-2 my-1 border-2 border-solid rounded-md bg-blue-700 px-4 py-1"> Sign up</button>
+            <input
+                className="mx-2 my-1 px-2 py-1 border-2 border-solid rounded-lg text-black"
+                type="password"
+                id="pwCheck"
+                name="pwCheck"
+                placeholder="비밀번호 확인"
+                title="비밀번호 확인"
+                />
+        </div>
+        <div>
+            <button
+              className="mx-2 my-1 border-2 border-solid rounded-md bg-blue-700 px-4 py-1"
+              > Sign up </button>
         </div>
         </form>
       </li>
