@@ -4,15 +4,23 @@ import { AuthService } from './auth.service';
 export class AuthController {
   constructor(private authService: AuthService) {}
   @Post()
-  signUp(@Body() data: { id: string; name: string; password: string }): any {
+  signUp(
+    @Body()
+    data: {
+      id: string;
+      nickname: string;
+      password: string;
+      pwcheck: string;
+    },
+  ): any {
     return this.authService.saveUserInformation(
       data.id,
-      data.name,
+      data.nickname,
       data.password,
     );
   }
-  @Post()
-  validCheck(@Body() data: { id: string }): any {
-    return this.authService.idValidCheck(data.id);
-  }
+  // @Post()
+  // validCheck(@Body() data: { id: string }): any {
+  //   return this.authService.idValidCheck(data.id);
+  // }
 }

@@ -1,31 +1,30 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 // import { createCipheriv, randomBytes, scrypt, createDecipheriv } from 'crypto';
 // import { promisify } from 'util';
 import * as bcrypt from 'bcrypt';
-import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../users/users.entity';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(User)
+    @Inject('USER_REPOSITORY')
     private userRepository: Repository<User>,
   ) {}
 
   //Hash algorithm with Salt and save the user information at the database
   async saveUserInformation(
     id: string,
-    name: string,
+    nickname: string,
     password: string,
   ): Promise<any> {
-    const saltOrRounds = 10;
-    const hash = await bcrypt.hash(password, saltOrRounds);
+    //const saltOrRounds = 10;
+    //const hash = await bcrypt.hash(password, saltOrRounds);
     const user = await this.userRepository
       .createQueryBuilder()
       .insert()
       .into(User)
-      .values({ id: id, name: name, password: hash })
+      .values({ id: id, nickname: nickname, password: password })
       .execute();
     return user;
   }

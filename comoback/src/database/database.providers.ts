@@ -1,20 +1,23 @@
-import { TypeOrmModule } from '@nestjs/typeorm';
-
+// import { TypeOrmModule } from '@nestjs/typeorm';
+import { DataSource } from 'typeorm';
+import { User } from '../users/users.entity';
 export const databaseProviders = [
   {
     provide: 'DATA_SOURCE',
     useFactory: async () => {
-      TypeOrmModule.forRoot({
+      // TypeOrmModule.forRoot({
+      const dataSource = new DataSource({
         type: 'mysql',
         host: 'localhost',
         port: 3306,
         username: 'root',
         password: 'password',
         database: 'comostationdb',
-        entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-        synchronize: true,
+        entities: [User],
+        synchronize: false,
         logging: true,
       });
+      return dataSource.initialize();
     },
   },
 ];
