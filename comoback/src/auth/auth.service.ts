@@ -69,18 +69,18 @@ export class AuthService {
   async login(id: string, password: string): Promise<any> {
     const user = await this.userRepository
       .createQueryBuilder('user')
-      .select('u.id')
+      .select('u.password')
       .from(User, 'u')
-      .where('u.id = :id', { id })
-      .andWhere('u.password = :password', { password })
+      .where('u.id = :id', { id: id })
       .getOne();
+    if (user === null) return false;
+    const isMatch = await bcrypt.compareSync(password, user.password);
     // user가 존재하고, 비밀번호가 일치하면 true, user가 존재하지 않거나 일치하지않으면 false 반환
-    if (user === null) {
-      console.log(user);
-      return false;
-    } else {
+    if (isMatch) {
       console.log(user);
       return true;
+    } else {
+      return false;
     }
   }
 }
