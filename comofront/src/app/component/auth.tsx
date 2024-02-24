@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 async function Authentication(formData: any) {
   const requestOptions = {
@@ -79,6 +80,7 @@ export default function AuthComponent({ auth }: { auth: React.ReactNode }) {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     await Authentication(formData);
+    router.push('/Login');
   };
   const handleIdDupCheck = async (e: any) => {
     e.preventDefault();
@@ -88,6 +90,7 @@ export default function AuthComponent({ auth }: { auth: React.ReactNode }) {
     e.preventDefault();
     await nicknameDupCheck(formData);
   };
+  const router = useRouter();
   return (
     <>
       <ul className="flex justify-center">
