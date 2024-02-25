@@ -4,12 +4,14 @@ import { Injectable, Inject } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
 import { User } from '../users/users.entity';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
   constructor(
     @Inject('USER_REPOSITORY')
     private userRepository: Repository<User>,
+    private jwtService: JwtService,
   ) {}
 
   //Hash algorithm with Salt and save the user information at the database
@@ -77,8 +79,14 @@ export class AuthService {
     const isMatch = await bcrypt.compareSync(password, user.password);
     // user가 존재하고, 비밀번호가 일치하면 true, user가 존재하지 않거나 일치하지않으면 false 반환
     if (isMatch) {
+      const payload = { id: id };
       console.log(user);
-      return true;
+      console.log(payload);
+      // 클라이언트의 응답 헤더에 쿠키 설정
+      //JWT TOKEN 생성 후 리턴
+      return {
+        access_token: await this.jwtService.signAsync(payload),
+      };
     } else {
       return false;
     }
