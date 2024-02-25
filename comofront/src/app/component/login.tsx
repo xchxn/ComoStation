@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Header from './layout/header';
+import { cookies } from 'next/headers'
 
 async function Login(formData: any) {
   const requestOptions = {
@@ -15,7 +16,7 @@ async function Login(formData: any) {
   const res = await fetch(`http://localhost:3001/auth/login`, requestOptions);
   // 서버에서의 응답을 JSON 형식으로 파싱
   const data = await res.json();
-
+  console.log(data);
   // 사용자가 존재하는 경우
   if (data) {
     console.log("로그인 성공.");
