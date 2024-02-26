@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-
+import Header from './layout/header';
 async function Authentication(formData: any) {
   const requestOptions = {
     method: "POST",
@@ -93,6 +93,7 @@ export default function AuthComponent({ auth }: { auth: React.ReactNode }) {
   const router = useRouter();
   return (
     <>
+    <Header />
       <ul className="flex justify-center">
         <li className="grid box-content h-128 w-80 bg-slate-50 mx-2 rounded-lg my-4 justify-items-center overflow-hidden place-items-start p-6 py-8 sm:p-8 lg:p-12">
           <h1 className="my-6 text-4xl text-black">🛰ComoStation</h1>

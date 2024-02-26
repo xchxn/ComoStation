@@ -1,9 +1,11 @@
-import Login from '../component/login';
+'use server'
+import LoginComponent from '../component/login';
+import { cookies } from 'next/headers'
 
-export default function Page(){
+export default async function Page(){
   return (
     <div>
-      <Login></Login>
+      <LoginComponent login></LoginComponent>
     </div>
   );
 }

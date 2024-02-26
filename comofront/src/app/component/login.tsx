@@ -2,9 +2,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Header from './layout/header';
-import { cookies } from 'next/headers'
 
-async function Login(formData: any) {
+async function Login(formData: any): Promise <string | null> {
   const requestOptions = {
     method: "POST",
     headers: {
@@ -16,16 +15,19 @@ async function Login(formData: any) {
   const res = await fetch(`http://localhost:3001/auth/login`, requestOptions);
   // 서버에서의 응답을 JSON 형식으로 파싱
   const data = await res.json();
-  console.log(data);
+  console.log(data.token);
   // 사용자가 존재하는 경우
   if (data) {
+    document.cookie = `id=${data.token}; path=/`;
     console.log("로그인 성공.");
+    return data.token;
   } else { // 사용자가 존재하지 않는 경우
     console.log("로그인 실패.");
+    return null;
   }
 }
 
-export default function LoginComponent({ login }: { login: React.ReactNode }) {
+export default function LoginComponent({ login }: { login: React.ReactNode}) {
     const [formData, setFormData] = useState({
       id: "",
       password: "",
@@ -99,8 +101,6 @@ export default function LoginComponent({ login }: { login: React.ReactNode }) {
             </form>
           </li>
         </ul>
-        {login}
       </>
     );
-  }
-
+}
