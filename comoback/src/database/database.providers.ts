@@ -1,6 +1,7 @@
 // import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { User } from '../users/users.entity';
+import { Post } from '../posting/post.entity';
 export const databaseProviders = [
   {
     provide: 'DATA_SOURCE',
@@ -13,7 +14,7 @@ export const databaseProviders = [
         username: 'root',
         password: 'password',
         database: 'comostationdb',
-        entities: [User],
+        entities: [User, Post],
         synchronize: false,
         logging: true,
       });
