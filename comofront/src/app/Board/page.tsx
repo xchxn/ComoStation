@@ -12,7 +12,7 @@ async function getPosts() {
 
 export default async function Posting() {
     const data = await getPosts()
-
+    //테이블처리
     return (
         <>
         <Headers />
