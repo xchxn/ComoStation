@@ -10,9 +10,10 @@ export default function header(){
             </div>
             <div className="flex flex-grow justify-evenly max-w-sm">
                 <Link href="/">Home</Link>
-                <Link href="/Community">Community</Link>
+                <Link href="/Posting">Posting</Link>
+                <Link href="/Board">Board</Link>
                 <Link href="/Login">Login</Link>
-                <Link href="/SignUp">signup</Link>
+                <Link href="/SignUp">SignUp</Link>
                 <button
                     >
                 Logout</button>
