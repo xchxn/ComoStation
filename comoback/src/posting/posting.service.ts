@@ -18,11 +18,11 @@ export class PostingService {
       .execute();
     return post;
   }
+
+  //db에서 게시글 목록 가져오기
   async getPosts(): Promise<any> {
-    const post = await this.postRepository
-      .createQueryBuilder()
-      .select()
-      .execute();
+    const post = await this.postRepository.createQueryBuilder('post').getMany();
+    //.select()
     console.log(post);
     return post;
   }
