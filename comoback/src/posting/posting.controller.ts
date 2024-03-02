@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get } from '@nestjs/common';
+import { Param, Body, Controller, Post, Get } from '@nestjs/common';
 import { PostingService } from './posting.service';
 
 @Controller('posting')
@@ -14,5 +14,9 @@ export class PostingController {
   @Get('getPosts')
   getPosts(): any {
     return this.postingService.getPosts();
+  }
+  @Get('viewPost/:id')
+  viewPost(@Param('id') params: any): any {
+    return this.postingService.viewPost(params);
   }
 }
