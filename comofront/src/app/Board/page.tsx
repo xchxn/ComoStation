@@ -1,4 +1,5 @@
 import Headers from "../component/layout/header";
+import Link from 'next/link';
 
 interface Post {
   post_number: number;
@@ -8,7 +9,7 @@ interface Post {
 }
 
 async function getPosts() {
-  'use server';
+  'use server'
   const res = await fetch(`http://localhost:3001/posting/getPosts`,{ next: { revalidate: 60 } });
 
   if (!res.ok) {
@@ -17,9 +18,8 @@ async function getPosts() {
   return res.json();
 }
 
-export default async function Posting() {
+export default async function Page() {
     const data = await getPosts();
-    console.log(data);
     //테이블처리
     return (
         <>
@@ -38,7 +38,11 @@ export default async function Posting() {
             {data.map((post : Post) => (
               <tr key={post.post_number}>
                 <td>{post.post_number}</td>
-                <td>{post.title}</td>
+                <td>
+                  <Link href={`/ViewPost/${post.post_number}`}>
+                    {post.title}
+                  </Link>
+                  </td>
                 <td>{post.content}</td>
                 <td>{post.writer}</td>
               </tr>
