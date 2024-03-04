@@ -19,6 +19,8 @@ export class AuthController {
       data.password,
     );
   }
+  //발견된 버그
+  //db에 저장시 0으로 시작하는 경우 0 다음문자열부터 저장됨.
   @Post('idvalidcheck')
   idValidCheck(@Body() data: { id: string }): any {
     console.log(data.id);
