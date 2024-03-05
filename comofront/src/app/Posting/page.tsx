@@ -1,8 +1,14 @@
 import Header from "../component/layout/header";
 
+interface Posts {
+  title: string;
+  content: string;
+  writer: string;
+}
+
 async function doPost(formData: FormData): Promise <any> {
   "use server";
-  const rawFormData = {
+  const rawFormData : any = {
     title: formData.get("title"),
     content: formData.get("content"),
     writer: formData.get("writer"),

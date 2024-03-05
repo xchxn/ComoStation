@@ -1,5 +1,5 @@
 import Header from "../component/layout/header";
-import { cookies } from 'next/headers'
+import { cookies } from "next/headers";
 
 async function Login(formData: any): Promise<any> {
   "use server";
@@ -31,68 +31,70 @@ async function Login(formData: any): Promise<any> {
     console.log("로그인 실패.");
   }
 }
-async function create() {
-  cookies().set('name', 'lee')
+async function CookieSetting() {
+  cookies().set("name", "lee");
   // or
-  cookies().set('name', 'lee', { secure: true })
+  cookies().set("name", "lee", { secure: true });
   // or
   cookies().set({
-    name: 'name',
-    value: 'lee',
+    name: "name",
+    value: "lee",
     httpOnly: true,
-    path: '/',
-  })
+    path: "/",
+  });
 }
 
 export default function Page() {
   return (
-    <>
+    <div>
       <Header />
-      <ul className="flex justify-center">
-        <li className="grid box-content h-128 w-80 bg-slate-50 mx-2 rounded-lg my-4 justify-items-center overflow-hidden place-items-start p-6 py-8 sm:p-8 lg:p-12">
-          <h1 className="my-6 text-4xl text-black">🛰ComoStation</h1>
-          <form action={Login}>
-            <div>
+      <div className="container mx-auto bg-slate-300 bg-center grid grid-rows-5 grid-flow-col justify-items-center justify-center content-center min-w-30 w-1/2 rounded-lg sm:p-8 lg:p-12 shadow-2xl shadow-[#22aeff]/50">
+          <div className="col-span-2 my-6 text-4xl text-black">🛰ComoStation</div>
+          <div>
+            <form className="" action={Login}>
+            <div className="col-span-2">
               <input
-                className="mx-2 my-1 px-2 py-1 border-2 border-solid rounded-lg text-black"
+                className="col-span-2w-full mx-2 my-1 px-2 py-1 border-2 border-solid rounded-lg text-black"
                 type="id"
                 id="id"
                 name="id"
-                placeholder="아이디"
+                placeholder="@ID"
               />
             </div>
-            <div>
+            <div className="col-span-2">
               <input
-                className="mx-2 my-1 px-2 py-1 border-2 border-solid rounded-lg text-black"
+                className="w-full mx-2 my-1 px-2 py-1 border-2 border-solid rounded-lg text-black"
                 type="password"
                 id="password"
                 name="password"
-                placeholder="비밀번호"
+                placeholder="@PASSWORD"
               />
             </div>
-            <div>
-              <button
-                className="mx-2 my-1 border-2 border-solid rounded-md bg-blue-700 px-4 py-1"
-                type="submit"
-              >
-                Login
-              </button>
-              <button
-                className="mx-2 my-1 border-2 border-solid rounded-md bg-blue-700 px-4 py-1"
-                type="button"
-                // onClick={() => router.push("/SignUp")}
-              >
-                Sign Up
-              </button>
-            </div>
-            <div>
-              <p className="text-gray-400 text-sm">
+            <div className="">
+              <div>
+                <button
+                  className="mx-2 my-1 border-2 border-solid rounded-md bg-[#22aeff] px-4 py-1"
+                  type="submit"
+                >
+                  Login
+                </button>
+              </div>
+              <div>
+                <button
+                  className=" mx-2 my-1 border-2 border-solid rounded-md bg-[#22aeff] px-4 py-1"
+                  type="button"
+                  // onClick={() => router.push("/SignUp")}
+                >
+                  Sign Up
+                </button>
+              </div>
+              <div className="col-start-1 col-end-2 text-gray-400 text-sm">
                 If you don`t have an id, sign up
-              </p>
+              </div>
             </div>
           </form>
-        </li>
-      </ul>
-    </>
+          </div>
+        </div>
+        </div>
   );
 }
