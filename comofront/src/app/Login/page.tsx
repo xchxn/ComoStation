@@ -48,53 +48,49 @@ export default function Page() {
   return (
     <div>
       <Header />
-      <div className="container mx-auto bg-slate-300 bg-center grid grid-rows-5 grid-flow-col justify-items-center justify-center content-center min-w-30 w-1/2 rounded-lg sm:p-8 lg:p-12 shadow-2xl shadow-[#22aeff]/50">
-          <div className="col-span-2 my-6 text-4xl text-black">🛰ComoStation</div>
-          <div>
-            <form className="" action={Login}>
-            <div className="col-span-2">
-              <input
-                className="col-span-2w-full mx-2 my-1 px-2 py-1 border-2 border-solid rounded-lg text-black"
-                type="id"
-                id="id"
-                name="id"
-                placeholder="@ID"
-              />
-            </div>
-            <div className="col-span-2">
-              <input
-                className="w-full mx-2 my-1 px-2 py-1 border-2 border-solid rounded-lg text-black"
-                type="password"
-                id="password"
-                name="password"
-                placeholder="@PASSWORD"
-              />
-            </div>
-            <div className="">
-              <div>
-                <button
-                  className="mx-2 my-1 border-2 border-solid rounded-md bg-[#22aeff] px-4 py-1"
-                  type="submit"
-                >
-                  Login
-                </button>
-              </div>
-              <div>
-                <button
-                  className=" mx-2 my-1 border-2 border-solid rounded-md bg-[#22aeff] px-4 py-1"
-                  type="button"
-                  // onClick={() => router.push("/SignUp")}
-                >
-                  Sign Up
-                </button>
-              </div>
-              <div className="col-start-1 col-end-2 text-gray-400 text-sm">
-                If you don`t have an id, sign up
-              </div>
-            </div>
-          </form>
+      <div className="container flex flex-col justify-evenly justify-items-center mx-auto max-h-96 bg-slate-300 bg-center gap-4 min-w-30 w-1/2 rounded-lg sm:p-8 lg:p-12 shadow-2xl shadow-[#22aeff]/50">
+        <div className="flex justify-center my-6 text-4xl text-black">ComoStation</div>
+        <div className="flex justify-center content-center">
+        <form className="" action={Login}>
+          <div className="mt-4">
+            <input
+              className="w-full mx-2 px-2 py-1 border-2 border-solid rounded-lg text-black"
+              type="id"
+              id="id"
+              name="id"
+              placeholder="@ID"
+            />
           </div>
+          <div className="">
+            <input
+              className="w-full mx-2 my-1 px-2 py-1 border-2 border-solid rounded-lg text-black"
+              type="password"
+              id="password"
+              name="password"
+              placeholder="@PASSWORD"
+            />
+          </div>
+          <div className="flex justify-center mt-4">
+            <button
+              className="mx-2 my-1 border-2 border-solid rounded-md bg-[#22aeff] px-4 py-1"
+              type="submit"
+            >
+              Login
+            </button>
+            <button
+              className="mx-2 my-1 border-2 border-solid rounded-md bg-[#22aeff] px-4 py-1"
+              type="button"
+              // onClick={() => router.push("/SignUp")}
+            >
+              Sign Up
+            </button>
+          </div>
+          <div className="text-gray-400 text-sm text-center">
+            If you don`t have an id, sign up
+          </div>
+        </form>
         </div>
-        </div>
+      </div>
+    </div>
   );
 }
