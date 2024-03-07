@@ -95,27 +95,24 @@ export default async function Page() {
   return (
     <div>
       <Header />
-      <ul className="flex justify-center">
-        <li className="grid box-content h-128 w-80 bg-slate-50 mx-2 rounded-lg my-4 justify-items-center overflow-hidden place-items-start p-6 py-8 sm:p-8 lg:p-12">
-          <h1 className="my-6 text-4xl text-black">🛰ComoStation</h1>
+      <div className="container flex flex-col min-w-128 justify-evenly justify-items-center mx-auto max-h-96 bg-slate-300 bg-center gap-4 w-1/2 rounded-lg sm:p-8 lg:p-12 shadow-2xl shadow-[#22aeff]/25">
+        <div className="flex justify-center my-6 text-4xl font-medium text-gray-600">ComoStation</div>
+        <div className="flex justify-center content-center">
           <form action={signUp}>
-            <div>
+            <div className="">
               <input
-                className="mx-2 my-1 px-2 py-1 border-2 border-solid rounded-lg text-black"
+                className="mx-2 px-2 py-1 border-2 border-solid rounded-lg text-black"
                 type="text"
                 id="id"
                 name="id"
                 placeholder="사용할 아이디"
               />
-              <div>
-                <button
+              <button
                   id="idDupCheck"
-                  className="mx-2 my-1 border-2 border-solid rounded-md bg-blue-700 px-4 py-1"
-                  formAction={IdCheck}
-                >
+                  className="mx-2 my-1 border-2 border-solid rounded-md bg-[#22aeff] px-4 py-1"
+                  formAction={IdCheck}>
                   Check for duplication
                 </button>
-              </div>
             </div>
             <div>
               <input
@@ -125,13 +122,10 @@ export default async function Page() {
                 name="nickname"
                 placeholder="사용할 닉네임"
               />
-            </div>
-            <div>
               <button
                 id="ninknameDupCheck"
-                className="mx-2 my-1 border-2 border-solid rounded-md bg-blue-700 px-4 py-1"
-                formAction={nicknameCheck}
-              >
+                className="mx-2 my-1 border-2 border-solid rounded-md bg-[#22aeff] px-4 py-1"
+                formAction={nicknameCheck}>
                 Check for duplication
               </button>
             </div>
@@ -153,18 +147,17 @@ export default async function Page() {
                 placeholder="비밀번호 확인"
               />
             </div>
-            <div>
+            <div className="flex justify-center">
               <button
                 id="signUp"
-                className="mx-2 my-1 border-2 border-solid rounded-md bg-blue-700 px-4 py-1"
-                type="submit"
-              >
+                className="flex justify-self-end mx-2 mt-6 border-2 border-solid rounded-md bg-[#22aeff] px-4 py-1"
+                type="submit">
                 Sign up
               </button>
             </div>
           </form>
-        </li>
-      </ul>
+          </div>
+        </div>
     </div>
   );
 }
