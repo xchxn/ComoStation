@@ -2,6 +2,7 @@
 import { DataSource } from 'typeorm';
 import { User } from '../users/users.entity';
 import { Post } from '../posting/post.entity';
+import { Comment } from '../posting/comment.entity';
 export const databaseProviders = [
   {
     provide: 'DATA_SOURCE',
@@ -14,7 +15,7 @@ export const databaseProviders = [
         username: 'root',
         password: 'password',
         database: 'comostationdb',
-        entities: [User, Post],
+        entities: [User, Post, Comment],
         synchronize: false,
         logging: true,
       });

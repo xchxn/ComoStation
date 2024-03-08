@@ -19,4 +19,18 @@ export class PostingController {
   viewPost(@Param('id') params: any): any {
     return this.postingService.viewPost(params);
   }
+  @Post('addComment')
+  addComment(
+    @Body() data: { comment: string; writer: string; post_number: number },
+  ): any {
+    return this.postingService.addComment(
+      data.comment,
+      data.writer,
+      data.post_number,
+    );
+  }
+  @Get('getComments/:id')
+  getComments(@Param('id') postNum: number): any {
+    return this.postingService.getComments(postNum);
+  }
 }

@@ -76,7 +76,8 @@ export class AuthService {
       .where('u.id = :id', { id: id })
       .getOne();
     if (user === null) return false;
-    const isMatch = await bcrypt.compareSync(password, user.password);
+    //const isMatch = await bcrypt.compareSync(password, user.password);
+    const isMatch = bcrypt.compareSync(password, user.password);
     if (isMatch) {
       const payload = { id: id };
       // 클라이언트의 응답 헤더에 쿠키 설정

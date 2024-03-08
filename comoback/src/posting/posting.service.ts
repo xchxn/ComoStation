@@ -1,12 +1,15 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Post } from './post.entity';
+import { Comment } from './comment.entity';
 
 @Injectable()
 export class PostingService {
   constructor(
     @Inject('POST_REPOSITORY')
     private postRepository: Repository<Post>,
+    @Inject('COMMENT_REPOSITORY')
+    private commentRepository: Repository<Comment>,
   ) {}
   async posting(title: string, content: string, writer: string): Promise<any> {
     console.log(title);
@@ -59,5 +62,29 @@ export class PostingService {
     return;
   }
   //댓글 등록
+  async addComment(
+    comment: string,
+    writer: string,
+    post_number: number,
+  ): Promise<any> {
+    const commenting = await this.commentRepository
+      .createQueryBuilder()
+      .insert()
+      .into(Comment)
+      .values({ comment: comment, writer: writer, post_number: post_number })
+      .execute();
+    return commenting;
+  }
+  //댓글 로딩
+  async getComments(post_number: number): Promise<any> {
+    const comments = await this.commentRepository
+      .createQueryBuilder('comment')
+      .select('comment.comment')
+      .addSelect('comment.writer')
+      .addSelect('comment.comment_number')
+      .where('comment.post_number =:pn', { pn: post_number })
+      .getMany();
+    return comments;
+  }
   //댓글 삭제
 }
