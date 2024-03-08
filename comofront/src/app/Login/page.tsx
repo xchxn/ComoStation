@@ -1,5 +1,6 @@
 import Header from "../component/layout/header";
 import { cookies } from "next/headers";
+import { redirect } from 'next/navigation';
 
 async function Login(formData: any): Promise<any> {
   "use server";
@@ -24,7 +25,9 @@ async function Login(formData: any): Promise<any> {
 
   // 사용자가 존재하는 경우
   if (data) {
+    cookies().set('id', data.id);
     console.log("로그인 성공.");
+    redirect(`/`);
     //로그인 성공 시, 메인페이지로 리디렉션 요망.
   } else {
     // 사용자가 존재하지 않는 경우

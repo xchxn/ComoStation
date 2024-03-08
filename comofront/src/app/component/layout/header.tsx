@@ -1,8 +1,15 @@
 import Link from 'next/link';
 import Navbar from './navbar';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
-export default function header(){
+export default async function Header(){
+//    const logout = () => {
+//     'use server'
+//         cookies().delete('id');
+//         redirect('/');
+//     }
     return (
         <header className="flex flex-col sm:flex-row m-5 justify-between items-center">
             <div className="flex cursor-pointer transform hover:scale-105">
@@ -15,6 +22,8 @@ export default function header(){
                 <Link href="/Login">Login</Link>
                 <Link href="/SignUp">SignUp</Link>
                 <button
+                    id='logout'
+                    // onClick={logout}
                     >
                 Logout</button>
             </div>
