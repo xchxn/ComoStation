@@ -9,13 +9,10 @@ import { useRouter } from "next/navigation";
 
 export default function Page() {
   const cookiesList = cookies()
-  // cookies().set('name', 'Delba')
   const hasCookie = cookiesList.has('id')
-
   if (hasCookie){
     return (
       <div className="">
-      <Header/>
       <div className="h-screen flex items-center justify-center">
         <div className="text-2xl text-center" >
             Objekt trade community for WAV
@@ -28,7 +25,6 @@ export default function Page() {
   }
   else return (
     <div>
-      <Header />
       <div className="h-screen flex items-center justify-center">
         <div className="text-2xl text-center" >
             Login Please.

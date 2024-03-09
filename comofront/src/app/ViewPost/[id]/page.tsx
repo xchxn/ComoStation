@@ -35,7 +35,7 @@ async function getComments(post_number: any) {
   const res = await fetch(
     `http://localhost:3001/posting/getComments/${post_number.id}`,
     {
-      next: { revalidate: 60 },
+      next: { revalidate: 10 },
     }
   );
 
@@ -89,7 +89,6 @@ export default async function Page({
   //테이블처리
   return (
     <>
-      <Headers />
       <div className="text-black bg-white">
         <div>Post Number: {data.post_number} </div>
         <div>Title: {data.title}</div>

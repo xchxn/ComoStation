@@ -39,9 +39,8 @@ async function doPost(formData: FormData): Promise<any> {
 export default async function Posting() {
   return (
     <div>
-      <Header />
       {/* <ObjektFilter /> */}
-      <div className="container flex flex-wrap w-full h-full gap-2 align-center justify-center text-black bg-white">
+      <div className="container flex flex-wrap mx-auto border-4 border-[#c4c4c4] rounded-lg  w-full h-full align-center justify-center justify-items-center text-black bg-white">
         <div className="grow w-full ml-10 mt-10 mx-8 text-gray-400">게시글 작성</div>
         <div className="grow w-full mx-10 my-10">
           <form action={doPost}>

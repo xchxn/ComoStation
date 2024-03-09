@@ -1,6 +1,3 @@
-import LoginComponent from "../component/login";
-import { cookies } from "next/headers";
-import Header from "../component/layout/header";
 
 async function signUp(formData: FormData): Promise<any> {
   "use server";
@@ -94,7 +91,6 @@ async function nicknameCheck(formData: FormData): Promise<any> {
 export default async function Page() {
   return (
     <div>
-      <Header />
       <div className="container flex flex-col min-w-128 justify-evenly justify-items-center mx-auto max-h-96 bg-slate-300 bg-center gap-4 w-1/2 rounded-lg sm:p-8 lg:p-12 shadow-2xl shadow-[#22aeff]/25">
         <div className="flex justify-center my-6 text-4xl font-medium text-gray-600">ComoStation</div>
         <div className="flex justify-center content-center">

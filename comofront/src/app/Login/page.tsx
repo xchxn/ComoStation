@@ -1,6 +1,7 @@
 import Header from "../component/layout/header";
 import { cookies } from "next/headers";
 import { redirect } from 'next/navigation';
+import Link from "next/link";
 
 async function Login(formData: any): Promise<any> {
   "use server";
@@ -49,8 +50,6 @@ async function CookieSetting() {
 
 export default function Page() {
   return (
-    <div>
-      <Header />
       <div className="container flex flex-col justify-evenly justify-items-center mx-auto max-h-96 bg-slate-300 bg-center gap-4 min-w-30 w-1/2 rounded-lg sm:p-8 lg:p-12 shadow-2xl shadow-[#22aeff]/50">
         <div className="flex justify-center my-6 text-4xl text-black">ComoStation</div>
         <div className="flex justify-center content-center">
@@ -83,9 +82,10 @@ export default function Page() {
             <button
               className="mx-2 my-1 border-2 border-solid rounded-md bg-[#22aeff] px-4 py-1"
               type="button"
-              // onClick={() => router.push("/SignUp")}
             >
-              Sign Up
+              <Link href={`/signup`}>
+                Sign Up
+              </Link>
             </button>
           </div>
           <div className="text-gray-400 text-sm text-center">
@@ -94,6 +94,5 @@ export default function Page() {
         </form>
         </div>
       </div>
-    </div>
   );
 }

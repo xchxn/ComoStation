@@ -25,10 +25,9 @@ export default async function Page() {
   //테이블처리
   return (
     <>
-      <Headers />
-      <div className="container flex flex-col justify-evenly justify-items-center align-middle content-center text-black bg-white">
-        <div className="my-2 mx-4 border-2 border-gray-500 rounded-md">
-              총 게시글
+      <div className="container flex flex-col mx-auto border-4 border-[#c4c4c4] px-4 rounded-lg justify-evenly justify-items-center align-middle content-center text-black bg-white">
+        <div className="my-2 mx-4 px-2 border-2 border-gray-500 rounded-md">
+              <span>총 게시글</span>
           </div>
         <div className="grow flex-wrap">
           <table>
