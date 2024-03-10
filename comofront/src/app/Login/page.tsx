@@ -35,18 +35,6 @@ async function Login(formData: any): Promise<any> {
     console.log("로그인 실패.");
   }
 }
-async function CookieSetting() {
-  cookies().set("name", "lee");
-  // or
-  cookies().set("name", "lee", { secure: true });
-  // or
-  cookies().set({
-    name: "name",
-    value: "lee",
-    httpOnly: true,
-    path: "/",
-  });
-}
 
 export default function Page() {
   return (

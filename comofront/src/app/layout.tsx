@@ -30,6 +30,9 @@ export default function RootLayout({
               </p>
             </div>
             <div className="flex flex-grow justify-evenly max-w-sm">
+              <p className="text-xl font-extrabold">
+               Hi, {getSession.value}
+              </p>
               <div className="flex cursor-pointer transform hover:scale-105">
                 <Link href="/">Home</Link>
               </div>
@@ -41,7 +44,8 @@ export default function RootLayout({
               </div>
               <button
                 id="logout">
-                  <Link href="/Logout">Logout</Link>
+                  <Link href="/Logout">
+                    Logout</Link>
               </button>
             </div>
           </header>
