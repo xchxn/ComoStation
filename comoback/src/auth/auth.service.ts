@@ -5,6 +5,7 @@ import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
 import { User } from '../users/users.entity';
 import { JwtService } from '@nestjs/jwt';
+import { jwtConstants } from './constants';
 
 @Injectable()
 export class AuthService {
@@ -91,5 +92,20 @@ export class AuthService {
     } else {
       return false;
     }
+  }
+
+  async logout(getToken: string): Promise<any> {
+    const token = getToken;
+    // 클라이언트의 응답 헤더에 쿠키 설정
+    //JWT TOKEN 검사 후 리턴하는 로직 구현
+    const payload = await this.jwtService.verifyAsync(token, {
+      secret: jwtConstants.secret,
+    });
+    console.log(payload);
+    if (payload) {
+      return true;
+    }
+    return false;
+    // return true;
   }
 }
