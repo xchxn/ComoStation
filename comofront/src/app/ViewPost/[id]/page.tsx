@@ -2,6 +2,7 @@ import Headers from "../../component/layout/header";
 import Link from "next/link";
 import { NextRouter } from "next/router";
 import { redirect } from "next/navigation";
+import { cookies } from 'next/headers';
 
 interface Post {
   post_number: number;
@@ -47,10 +48,11 @@ async function getComments(post_number: any) {
 
 async function addComment(post_number: any, formData: FormData): Promise<any> {
   "use server";
+  const getId = cookies().get("id");
   const rawFormData: any = {
     post_number: post_number.id,
     comment: formData.get("comment"),
-    writer: "writer",
+    writer: getId?.value,
     //writer: formData.get("writer"),
     //작성자는 캐시로.
   };

@@ -26,7 +26,9 @@ async function Login(formData: any): Promise<any> {
 
   // 사용자가 존재하는 경우
   if (data) {
+    //토큰 정보 저장
     cookies().set('id', data.id);
+    cookies().set('token', data.token);
     console.log("로그인 성공.");
     redirect(`/`);
     //로그인 성공 시, 메인페이지로 리디렉션 요망.
@@ -71,7 +73,7 @@ export default function Page() {
               className="mx-2 my-1 border-2 border-solid rounded-md bg-[#22aeff] px-4 py-1"
               type="button"
             >
-              <Link href={`/signup`}>
+              <Link href={`/SignUp`}>
                 Sign Up
               </Link>
             </button>

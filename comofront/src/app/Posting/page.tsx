@@ -1,5 +1,5 @@
 import Header from "../component/layout/header";
-
+import { cookies } from 'next/headers';
 interface Posts {
   title: string;
   content: string;
@@ -11,7 +11,7 @@ async function doPost(formData: FormData): Promise<any> {
   const rawFormData: any = {
     title: formData.get("title"),
     content: formData.get("content"),
-    writer: formData.get("writer"),
+    writer: cookies().get("id")?.value,
   };
 
   console.log(rawFormData);
@@ -20,6 +20,7 @@ async function doPost(formData: FormData): Promise<any> {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `${cookies().get("token")?.value}`,
     },
     body: JSON.stringify(rawFormData),
   };
@@ -49,9 +50,6 @@ export default async function Posting() {
             </div>
             <div className="grow my-4">
               <input className="grow w-full h-96 border-4 border-[#63aad3] rounded-lg p-1" type="text" name="content" placeholder="Content" />
-            </div>
-            <div>
-              <input className="grow border-4 border-[#63aad3] rounded-lg p-1" type="text" name="writer" placeholder="Writer" />
             </div>
             <div className="flex text-black justify-end bg-white bg-cover">
               <button
