@@ -20,7 +20,7 @@ async function doPost(formData: FormData): Promise<any> {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `${cookies().get("token")?.value}`,
+      Authorization: `Bearer ${cookies().get("token")?.value}`,
     },
     body: JSON.stringify(rawFormData),
   };

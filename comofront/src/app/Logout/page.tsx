@@ -8,12 +8,13 @@ async function Logout(): Promise<any> {
     token : cookies().get('token'),
   };
 
-  console.log(rawFormData);
+  console.log(cookies().get("token")?.value);
 
   const requestOptions = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${cookies().get("token")?.value}`,
     },
     body: JSON.stringify(rawFormData),
   };

@@ -63,6 +63,7 @@ async function addComment(post_number: any, formData: FormData): Promise<any> {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${cookies().get("token")?.value}`,
     },
     body: JSON.stringify(rawFormData),
   };
