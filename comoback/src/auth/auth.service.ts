@@ -101,11 +101,13 @@ export class AuthService {
     const payload = await this.jwtService.verifyAsync(token, {
       secret: jwtConstants.secret,
     });
-    console.log(payload);
     if (payload) {
+      console.log('참값반환');
       return true;
+    } else {
+      console.log('거짓반환');
+      return false;
     }
-    return false;
     // return true;
   }
 }

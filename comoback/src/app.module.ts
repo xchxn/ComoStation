@@ -10,7 +10,6 @@ import { DatabaseModule } from './database/database.module';
 import { PostingService } from './posting/posting.service';
 import { PostingController } from './posting/posting.controller';
 import { postProviders } from './posting/post.providers';
-//import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [AuthModule, DatabaseModule],

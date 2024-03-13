@@ -6,7 +6,7 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 export class PostingController {
   constructor(private readonly postingService: PostingService) {}
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Post('posting')
   posting(
     @Body() data: { title: string; content: string; writer: string },
@@ -21,6 +21,8 @@ export class PostingController {
   viewPost(@Param('id') params: any): any {
     return this.postingService.viewPost(params);
   }
+
+  @UseGuards(JwtAuthGuard)
   @Post('addComment')
   addComment(
     @Body() data: { comment: string; writer: string; post_number: number },
