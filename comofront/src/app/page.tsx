@@ -8,9 +8,9 @@ import Layout from "./layout";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
-  const cookiesList = cookies()
-  const hasCookie = cookiesList.has('id')
-  if (hasCookie){
+  // const cookiesList = cookies()
+  const hasCookie = cookies().get("id");
+  if (hasCookie?.value){
     return (
       <div className="">
       <div className="h-screen flex items-center justify-center">

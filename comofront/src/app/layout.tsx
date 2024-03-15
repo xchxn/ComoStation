@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   const getSession = cookies().get("id");
   
-  if (getSession) {
+  if (getSession?.value) {
     return (
       <html lang="en">
         <body className={inter.className}>
@@ -31,7 +31,7 @@ export default function RootLayout({
             </div>
             <div className="flex flex-grow justify-evenly max-w-sm">
               <p className="text-xl font-extrabold">
-               Hi, {getSession.value}
+               Hi, {getSession?.value}
               </p>
               <div className="flex cursor-pointer transform hover:scale-105">
                 <Link href="/">Home</Link>

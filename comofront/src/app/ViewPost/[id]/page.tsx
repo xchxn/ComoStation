@@ -2,7 +2,7 @@ import Headers from "../../component/layout/header";
 import Link from "next/link";
 import { NextRouter } from "next/router";
 import { redirect } from "next/navigation";
-import { cookies } from 'next/headers';
+import { cookies } from "next/headers";
 
 interface Post {
   post_number: number;
@@ -89,34 +89,47 @@ export default async function Page({
   const data = await getPosts(params);
   const addPostNumtoComment = addComment.bind(null, params);
   const commentData = await getComments(params);
+  const userId = cookies().get("id");
   //테이블처리
   return (
-    <>
-      <div className="text-black bg-white">
-        <div>Post Number: {data.post_number} </div>
-        <div>Title: {data.title}</div>
-        <div>Content: {data.content}</div>
-        <div>Writer: {data.writer}</div>
-      </div>
-      <div id="comment">
-        <form action={addPostNumtoComment}>
-          <input
-            className="grow border-4 border-[#63aad3] rounded-lg p-1 text-black"
-            type="text"
-            name="comment"
-            placeholder="comment"
-          ></input>
-        <div className="flex text-black justify-end bg-white bg-cover">
-          <button
-            className="border-2 border-[#63aad3] px-2 rounded-md bg-[#22aeff] text-white"
-            type="submit"
-          >
-            Add
-          </button>
+    <div>
+      <div className="container flex flex-wrap mx-auto border-4 border-[#c4c4c4] rounded-lg  w-full h-full align-center justify-center justify-items-center text-black bg-white">
+        <div className="flex text-black bg-white">
+          <div>Post Number: {data.post_number} </div>
+          <div>Title: {data.title}</div>
+          <div>Writer: {data.writer}</div>
+          <div className="flex flex-wrap text-black bg-white">
+            Content: {data.content}
           </div>
-          </form>
         </div>
-        <div className="grow flex-wrap">
+      </div>
+      <div className="container flex mx-auto mt-2 border-4 border-[#c4c4c4] rounded-lg  w-full h-full align-middle items-center content-center justify-evenly justify-items-center text-black bg-white">
+        <div className="flex mx-auto" id="comment">
+          <div className="border-2 bg-gray-400 px-2 border-[#c4c4c4] rounded-sm mx-2">
+            {userId?.value}
+          </div>
+          <div className="flex">
+            <form action={addPostNumtoComment}>
+              <div className="flex">
+                <input
+                  className="border-4 border-[#63aad3] rounded-lg p-1 text-black"
+                  type="text"
+                  name="comment"
+                  placeholder="comment"
+                ></input>
+              </div>
+              <div className="flex text-black bg-white bg-cover">
+                <button
+                  className="border-2 border-[#63aad3] px-2 rounded-md bg-[#22aeff] text-white"
+                  type="submit"
+                >
+                  Add
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className="flex">
           <table>
             <thead>
               <tr>
@@ -134,6 +147,7 @@ export default async function Page({
             </tbody>
           </table>
         </div>
-    </>
+      </div>
+    </div>
   );
 }

@@ -1,4 +1,6 @@
-import { redirect } from 'next/navigation'
+import { redirect, permanentRedirect  } from 'next/navigation'
+import Link from "next/link"
+import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
 
 async function Logout(): Promise<any> {
@@ -30,7 +32,8 @@ async function Logout(): Promise<any> {
     cookies().delete('id');
     cookies().delete('token');
     console.log("로그아웃 성공.");
-    redirect(`/`);
+    revalidatePath('/')
+    permanentRedirect(`/`);
     //로그인 성공 시, 메인페이지로 리디렉션 요망.
   } else {
     // 사용자가 존재하지 않는 경우
@@ -43,7 +46,8 @@ export default function Page() {
       <div>
         <form className="" action={Logout}>
           <button type="submit">
-            logout
+            {/* <Link href="/">Logout</Link> */}
+            Logout
           </button>
           </form>
         </div>
